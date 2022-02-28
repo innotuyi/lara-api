@@ -204,6 +204,50 @@ class MeetingController extends Controller
 
         return response()->json($response, 404);
     }
+ /**
+    * Display specific meeting.
+    *
+    * @return \Illuminate\Http\Response
+    * @param  int  $id
+     * @OA\Get (
+     *     path="/api/v1/meeting/{id}",
+     *     tags={"meeting"},
+     *     security={ {"bearer": {} }},
+     *     @OA\Parameter(
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="success",
+     *         @OA\JsonContent(
+     *              @OA\Property(property="title", type="number", example=1),
+     *              @OA\Property(property="description", type="string", example="title"),
+     *              @OA\Property(property="time", type="string", example="content@gmil.com"),
+     *           
+     *         )
+     *     ),
+     *      @OA\Response(
+ *    response=401,
+ *    description="UnAuthorized",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="UnAuthanticated"),
+ *    )
+ * ),
+ *  @OA\Response(
+ *    response=500,
+ *    description="Returns when there is server problem",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="Server Error"),
+ *    )  
+ * )   
+     * )
+     */
+
+
+    
     public function show($id)
     {
         $meeting = Meeting::with('users')->where('id', $id)->firstOrFail();
@@ -218,6 +262,83 @@ class MeetingController extends Controller
         ];
         return response()->json($response, 200);
     }
+
+
+   /**
+     * Update an Meeting
+     * @OA\Put (
+     *     path="/api/v1/meeting/{id}",
+     *     tags={"meeting"},
+     *     security={ {"bearer": {} }},
+     *     @OA\Parameter(
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                      type="object",
+     *                      @OA\Property(
+     *                          property="title",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="description",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="time",
+     *                          type="date"
+     *                      ),                
+     *                 ),
+     *                 example={
+     *                     "title":"Meeting one",
+     *                     "description":"Meeting one description",
+     *                     "date":"202201301330CET",
+     *                }
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="success",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="title", type="number", example=1),
+     *              @OA\Property(property="description", type="string", example="title"),
+     *              @OA\Property(property="time", type="string", example="content@gmil.com"),
+     *          )
+     *      ),
+     *      @OA\Response(
+ *    response=401,
+ *    description="UnAuthorized",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="UnAuthanticated"),
+ *    )
+ * ),
+ *  @OA\Response(
+ *    response=500,
+ *    description="Returns when there is server problem",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="Server Error"),
+ *    )  
+ * ),
+ *  @OA\Response(
+     *          response=419,
+     *          description="CSRF Token mismatch",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="msg", type="string", example="fail"),
+     *          )
+     *      ),
+     * )
+     */
+
+
+
+    
     public function update(Request $request, $id)
     {
         $this->validate($request, [

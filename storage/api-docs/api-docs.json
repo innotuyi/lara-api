@@ -233,6 +233,229 @@
                     }
                 ]
             }
+        },
+        "/api/v1/meeting/{id}": {
+            "get": {
+                "tags": [
+                    "meeting"
+                ],
+                "summary": "Display specific meeting.",
+                "operationId": "App\\Http\\Controllers\\MeetingController::show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "title": {
+                                            "description": "Display specific meeting.",
+                                            "type": "number",
+                                            "example": 1
+                                        },
+                                        "description": {
+                                            "description": "Display specific meeting.",
+                                            "type": "string",
+                                            "example": "title"
+                                        },
+                                        "time": {
+                                            "description": "Display specific meeting.",
+                                            "type": "string",
+                                            "example": "content@gmil.com"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "UnAuthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Display specific meeting.",
+                                            "type": "string",
+                                            "example": "UnAuthanticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returns when there is server problem",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Display specific meeting.",
+                                            "type": "string",
+                                            "example": "Server Error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "meeting"
+                ],
+                "summary": "Update an Meeting",
+                "operationId": "App\\Http\\Controllers\\MeetingController::update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "description": "Update an Meeting",
+                                        "properties": {
+                                            "title": {
+                                                "description": "Update an Meeting",
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "description": "Update an Meeting",
+                                                "type": "string"
+                                            },
+                                            "time": {
+                                                "description": "Update an Meeting",
+                                                "type": "date"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "title": "Meeting one",
+                                    "description": "Meeting one description",
+                                    "date": "202201301330CET"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "title": {
+                                            "description": "Update an Meeting",
+                                            "type": "number",
+                                            "example": 1
+                                        },
+                                        "description": {
+                                            "description": "Update an Meeting",
+                                            "type": "string",
+                                            "example": "title"
+                                        },
+                                        "time": {
+                                            "description": "Update an Meeting",
+                                            "type": "string",
+                                            "example": "content@gmil.com"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "UnAuthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Update an Meeting",
+                                            "type": "string",
+                                            "example": "UnAuthanticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returns when there is server problem",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Update an Meeting",
+                                            "type": "string",
+                                            "example": "Server Error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "419": {
+                        "description": "CSRF Token mismatch",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "description": "Update an Meeting",
+                                            "type": "string",
+                                            "example": "fail"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
         }
     }
 }
