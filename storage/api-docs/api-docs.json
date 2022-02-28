@@ -838,6 +838,144 @@
                     }
                 ]
             }
+        },
+        "/api/v1/meeting/registration": {
+            "post": {
+                "tags": [
+                    "registration"
+                ],
+                "summary": "Register for Meeting",
+                "operationId": "App\\Http\\Controllers\\RegistrationController::store",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "description": "Register for Meeting",
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "user_id": {
+                                                    "description": "Register for Meeting",
+                                                    "type": "number"
+                                                },
+                                                "meeting_id": {
+                                                    "description": "Register for Meeting",
+                                                    "type": "number"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "user_id": 1,
+                                    "meeting_id": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "user_id": {
+                                            "description": "Register for Meeting",
+                                            "type": "number",
+                                            "example": 1
+                                        },
+                                        "meeting_id": {
+                                            "description": "Register for Meeting",
+                                            "type": "number",
+                                            "example": 1
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "description": "Register for Meeting",
+                                            "type": "string",
+                                            "example": "fail"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "UnAuthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Register for Meeting",
+                                            "type": "string",
+                                            "example": "UnAuthanticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returns when there is server problem",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Register for Meeting",
+                                            "type": "string",
+                                            "example": "Server Error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "419": {
+                        "description": "CSRF Token mismatch",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "description": "Register for Meeting",
+                                            "type": "string",
+                                            "example": "fail"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
         }
     }
 }
