@@ -18,7 +18,56 @@ class MeetingController extends Controller
             'update', 'store', 'destroy'
         ]]);
     }
+    
+/**
+    * @OA\Get(
+        *     path="/api/v1/meeting",
+        *     tags={"meeting"},
+        *     security={{"bearer":{} }},
+        *     summary="List of all Meetings",
+*    @OA\Response(
+ *    response=401,
+ *    description="UnAuthorized",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="UnAuthanticated"),
+ *    )
+ * ),
+ *   @OA\Response(
+ *    response=500,
+ *    description="Returns when there is server problem",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="Server Error"),
+ *    )  
+ * ),
+ *   @OA\Response(
+*     response="200",
+*     description="Returns Meeting list",
+*     @OA\JsonContent(
+*       type="array",
+*       @OA\Items(
+ *           @OA\Property(
+ *                         property="title",
+ *                         type="string",
+ *                         example="UI/ux Meeting"
+ *                      ),
+ *                      @OA\Property(
+ *                         property="description",
+ *                         type="string",
+ *                         example="all about ui/ux meeting"
+ *                      ),
+ *                      @OA\Property(
+ *                         property="time",
+ *                         type="date",
+ *                         example="2022-01-30 13:30:00"
+ *                      ),
+* )
+*     )
+*   )
+     * )
+
+ */
     public function index()
+
     {
         $meetings = Meeting::all();
         foreach ($meetings as $meeting) {
@@ -34,6 +83,86 @@ class MeetingController extends Controller
         ];
         return response()->json($response, 200);
     }
+
+ /**
+     * Create an Meeting
+     * @OA\Post (
+     *     path="/api/v1/meeting",
+     *     tags={"meeting"},
+     *     summary = "Creating new meeting",
+     *     security={{"bearer":{} }},
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                      type="array",
+     *                       @OA\Items(
+     *                      @OA\Property(
+     *                          property="title",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="description",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="time",
+     *                          type="date"
+     *                      ),
+     *                     ),
+     *                 ),
+     *                 example={
+     *                     "time":"202201301330CET",
+    *                      "title":"Cool meeting",
+    *                       "description":"cool meeting today"
+     *                    }
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="success",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="title", type="number", example="one meeting"),
+     *              @OA\Property(property="description", type="string", example="another meeting"),
+     *              @OA\Property(property="time", type="string", example="202201301330CET"),
+     * 
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="invalid",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="msg", type="string", example="fail"),
+     *          )
+     *      ),
+     *      @OA\Response(
+ *    response=401,
+ *    description="UnAuthorized",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="UnAuthanticated"),
+ *    )
+ * ),
+ *  @OA\Response(
+ *    response=500,
+ *    description="Returns when there is server problem",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="Server Error"),
+ *    )  
+ * ),
+ *  @OA\Response(
+     *          response=419,
+     *          description="CSRF Token mismatch",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="msg", type="string", example="fail"),
+     *          )
+     *      ),   
+     * )
+    */
+
+
+    
     public function store(Request $request)
     {
         $this->validate($request, [

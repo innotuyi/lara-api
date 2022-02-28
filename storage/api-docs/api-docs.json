@@ -1,0 +1,238 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Meeting Scheduler API",
+        "description": "Meeting Scheduler API allows to perfom operation related to meeting",
+        "contact": {
+            "email": "innotuyi8@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/meeting": {
+            "get": {
+                "tags": [
+                    "meeting"
+                ],
+                "summary": "List of all Meetings",
+                "operationId": "App\\Http\\Controllers\\MeetingController::index",
+                "responses": {
+                    "401": {
+                        "description": "UnAuthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "UnAuthanticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returns when there is server problem",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Server Error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Returns Meeting list",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "title": {
+                                                "type": "string",
+                                                "example": "UI/ux Meeting"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "all about ui/ux meeting"
+                                            },
+                                            "time": {
+                                                "type": "date",
+                                                "example": "2022-01-30 13:30:00"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "meeting"
+                ],
+                "summary": "Creating new meeting",
+                "operationId": "App\\Http\\Controllers\\MeetingController::store",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "description": "Create an Meeting",
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "title": {
+                                                    "description": "Create an Meeting",
+                                                    "type": "string"
+                                                },
+                                                "description": {
+                                                    "description": "Create an Meeting",
+                                                    "type": "string"
+                                                },
+                                                "time": {
+                                                    "description": "Create an Meeting",
+                                                    "type": "date"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "time": "202201301330CET",
+                                    "title": "Cool meeting",
+                                    "description": "cool meeting today"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "title": {
+                                            "description": "Create an Meeting",
+                                            "type": "number",
+                                            "example": "one meeting"
+                                        },
+                                        "description": {
+                                            "description": "Create an Meeting",
+                                            "type": "string",
+                                            "example": "another meeting"
+                                        },
+                                        "time": {
+                                            "description": "Create an Meeting",
+                                            "type": "string",
+                                            "example": "202201301330CET"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "description": "Create an Meeting",
+                                            "type": "string",
+                                            "example": "fail"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "UnAuthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Create an Meeting",
+                                            "type": "string",
+                                            "example": "UnAuthanticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returns when there is server problem",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Create an Meeting",
+                                            "type": "string",
+                                            "example": "Server Error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "419": {
+                        "description": "CSRF Token mismatch",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "description": "Create an Meeting",
+                                            "type": "string",
+                                            "example": "fail"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        }
+    }
+}
