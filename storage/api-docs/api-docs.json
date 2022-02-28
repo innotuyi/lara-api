@@ -13,6 +13,153 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/v1/user": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Creating new user",
+                "operationId": "App\\Http\\Controllers\\AuthController::store",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "description": "Create an Meeting",
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "name": {
+                                                    "description": "Create an Meeting",
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "description": "Create an Meeting",
+                                                    "type": "email"
+                                                },
+                                                "password": {
+                                                    "description": "Create an Meeting",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Innocent",
+                                    "email": "innocent@gmail.com"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "name": {
+                                            "description": "Create an Meeting",
+                                            "type": "number",
+                                            "example": "innocent"
+                                        },
+                                        "email": {
+                                            "description": "Create an Meeting",
+                                            "type": "string",
+                                            "example": "innocent@gmail.om"
+                                        },
+                                        "password": {
+                                            "description": "Create an Meeting",
+                                            "type": "string",
+                                            "example": "innocent"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "description": "Create an Meeting",
+                                            "type": "string",
+                                            "example": "fail"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "UnAuthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Create an Meeting",
+                                            "type": "string",
+                                            "example": "UnAuthanticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returns when there is server problem",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Create an Meeting",
+                                            "type": "string",
+                                            "example": "Server Error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "419": {
+                        "description": "CSRF Token mismatch",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "description": "Create an Meeting",
+                                            "type": "string",
+                                            "example": "fail"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/api/v1/meeting": {
             "get": {
                 "tags": [
@@ -440,6 +587,98 @@
                                     "properties": {
                                         "msg": {
                                             "description": "Update an Meeting",
+                                            "type": "string",
+                                            "example": "fail"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "meeting"
+                ],
+                "summary": "Delete meeting",
+                "operationId": "App\\Http\\Controllers\\MeetingController::destroy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "description": "Delete meeting",
+                                            "type": "string",
+                                            "example": "Employee deletion success"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "UnAuthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Delete meeting",
+                                            "type": "string",
+                                            "example": "UnAuthanticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returns when there is server problem",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Delete meeting",
+                                            "type": "string",
+                                            "example": "Server Error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "419": {
+                        "description": "CSRF Token mismatch",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "description": "Delete meeting",
                                             "type": "string",
                                             "example": "fail"
                                         }
