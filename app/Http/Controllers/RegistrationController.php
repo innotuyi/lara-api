@@ -128,10 +128,48 @@ class RegistrationController extends Controller
         return response()->json($response, 201);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
+/**
+     * unregister for meeting
+     * @OA\Delete (
+     *     path="/api/v1/meeting/registration/{id}",
+     *     tags={"registration"},
+     *     security={ {"bearer": {} }},
+     *     @OA\Parameter(
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="success",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="msg", type="string", example="Employee deletion success")
+     *         )
+     *     ),
+     *      @OA\Response(
+ *    response=401,
+ *    description="UnAuthorized",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="UnAuthanticated"),
+ *    )
+ * ),
+ *  @OA\Response(
+ *    response=500,
+ *    description="Returns when there is server problem",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="Server Error"),
+ *    )  
+ * ),  
+ *  @OA\Response(
+     *          response=419,
+     *          description="CSRF Token mismatch",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="msg", type="string", example="fail"),
+     *          )
+     *      ), 
+     * )
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
