@@ -160,6 +160,149 @@
                 ]
             }
         },
+        "/api/v1/user/signin": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Sign in a User",
+                "operationId": "App\\Http\\Controllers\\AuthController::signin",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "description": "Sign in a User",
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "name": {
+                                                    "description": "Sign in a User",
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "description": "Sign in a User",
+                                                    "type": "email"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Innocent",
+                                    "email": "innocent@gmail.com"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "name": {
+                                            "description": "Sign in a User",
+                                            "type": "number",
+                                            "example": "innocent"
+                                        },
+                                        "email": {
+                                            "description": "Sign in a User",
+                                            "type": "string",
+                                            "example": "innocent@gmail.om"
+                                        },
+                                        "password": {
+                                            "description": "Sign in a User",
+                                            "type": "string",
+                                            "example": "innocent"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "description": "Sign in a User",
+                                            "type": "string",
+                                            "example": "fail"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "UnAuthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Sign in a User",
+                                            "type": "string",
+                                            "example": "UnAuthanticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Returns when there is server problem",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Sign in a User",
+                                            "type": "string",
+                                            "example": "Server Error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "419": {
+                        "description": "CSRF Token mismatch",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "description": "Sign in a User",
+                                            "type": "string",
+                                            "example": "fail"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/api/v1/meeting": {
             "get": {
                 "tags": [
