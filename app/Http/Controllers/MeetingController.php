@@ -23,7 +23,6 @@ class MeetingController extends Controller
     * @OA\Get(
         *     path="/api/v1/meeting",
         *     tags={"meeting"},
-        *     security={{"bearer":{} }},
         *     summary="List of all Meetings",
 *    @OA\Response(
  *    response=401,
@@ -88,9 +87,8 @@ class MeetingController extends Controller
      * Create an Meeting
      * @OA\Post (
      *     path="/api/v1/meeting",
-     *     tags={"meeting"},
-     *     summary = "Creating new meeting",
-     *     security={{"bearer":{} }},
+     *     tags={"meeting"}, 
+     *      security={ {"apiAuth": {} }},
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *             mediaType="application/json",
@@ -112,6 +110,7 @@ class MeetingController extends Controller
      *                      ),
      *                     ),
      *                 ),
+  
      *                 example={
      *                     "time":"202201301330CET",
     *                      "title":"Cool meeting",
@@ -123,6 +122,16 @@ class MeetingController extends Controller
      *      @OA\Response(
      *          response=200,
      *          description="success",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="title", type="number", example="one meeting"),
+     *              @OA\Property(property="description", type="string", example="another meeting"),
+     *              @OA\Property(property="time", type="string", example="202201301330CET"),
+     * 
+     *          )
+     *      ),
+     *           @OA\Response(
+     *          response=201,
+     *          description="Meeting created",
      *          @OA\JsonContent(
      *              @OA\Property(property="title", type="number", example="one meeting"),
      *              @OA\Property(property="description", type="string", example="another meeting"),
@@ -159,6 +168,17 @@ class MeetingController extends Controller
      *          )
      *      ),   
      * )
+     * 
+ *     @OA\SecurityScheme(
+ *     type="http",
+ *     description="Login with email and password to get the authentication token",
+ *     name="Token based Based",
+ *     in="header",
+ *     scheme="bearer",
+ *     bearerFormat="JWT",
+ *     securityScheme="apiAuth",
+ * )
+  )
     */
 
 

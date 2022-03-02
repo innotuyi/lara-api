@@ -12,12 +12,11 @@ class AuthController extends Controller
 {
 
 /**
-     * Create an Meeting
      * @OA\Post (
      *     path="/api/v1/user",
      *     tags={"user"},
      *     summary = "Creating new user",
-     *     security={{"bearer":{} }},
+     *     security={{"apiAuth":{} }},
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *             mediaType="application/json",
@@ -42,6 +41,7 @@ class AuthController extends Controller
      *                 example={
      *                     "name":"Innocent",
     *                      "email":"innocent@gmail.com",
+    *                       "password":"test123",
      *                    }
      *             )
      *         )
@@ -52,7 +52,19 @@ class AuthController extends Controller
      *          @OA\JsonContent(
      *              @OA\Property(property="name", type="number", example="innocent"),
      *              @OA\Property(property="email", type="string", example="innocent@gmail.om"),
-     *              @OA\Property(property="password", type="string", example="innocent"),
+     * 
+   
+     * 
+     *          )
+     *      ),
+        *      @OA\Response(
+     *          response=201,
+     *          description="User created",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="name", type="number", example="innocent"),
+     *              @OA\Property(property="email", type="string", example="innocent@gmail.om"),
+     * 
+   
      * 
      *          )
      *      ),
@@ -83,7 +95,16 @@ class AuthController extends Controller
      *          @OA\JsonContent(
      *              @OA\Property(property="msg", type="string", example="fail"),
      *          )
-     *      ),   
+     *      ),
+     *     @OA\SecurityScheme(
+     *     type="http",
+     *     description="Login with email and password to get the authentication token",
+     *     name="Token based Based",
+     *     in="header",
+     *     scheme="bearer",
+     *     bearerFormat="JWT",
+     *     securityScheme="apiAuth",
+     * )   
      * )
     */
 
@@ -143,18 +164,18 @@ class AuthController extends Controller
      *                      type="array",
      *                       @OA\Items(
      *                      @OA\Property(
-     *                          property="name",
-     *                          type="string"
-     *                      ),
-     *                      @OA\Property(
      *                          property="email",
      *                          type="email"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="password",
+     *                          type="password"
      *                      ),
      *                     ),
      *                 ),
      *                 example={
-     *                     "name":"Innocent",
-    *                      "email":"innocent@gmail.com",
+     *                     "email":"innocent@gmail.com",
+    *                      "password":"innocent123",
      *                    }
      *             )
      *         )
@@ -163,9 +184,8 @@ class AuthController extends Controller
      *          response=200,
      *          description="success",
      *          @OA\JsonContent(
-     *              @OA\Property(property="name", type="number", example="innocent"),
-     *              @OA\Property(property="email", type="string", example="innocent@gmail.om"),
-     *              @OA\Property(property="password", type="string", example="innocent"),
+     *              @OA\Property(property="token", type="text", example="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvdXNlclwvc2lnbmluIiwiaWF0IjoxNjQ2MTY1OTUwLCJleHAiOjE2NDYxNjk1NTAsIm5iZiI6MTY0NjE2NTk1MCwianRpIjoiaU1uc3p5YlQxdGJBOXZDQSIsInN1YiI6MTMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.ObJXwVHouaajvWmzVUJNRw4EEAXHn3ndznQF82IsxSQ"),
+     *           
      * 
      *          )
      *      ),
@@ -191,13 +211,22 @@ class AuthController extends Controller
  *    )  
  * ),
  *  @OA\Response(
-     *          response=419,
-     *          description="CSRF Token mismatch",
-     *          @OA\JsonContent(
-     *              @OA\Property(property="msg", type="string", example="fail"),
-     *          )
-     *      ),   
-     * )
+ *          response=419,
+ *          description="CSRF Token mismatch",
+ *          @OA\JsonContent(
+ *              @OA\Property(property="msg", type="string", example="fail"),
+ *          )
+ *      ),   
+ * )
+ * @OA\SecurityScheme(
+ *     type="http",
+ *     description="Login with email and password to get the authentication token",
+ *     name="Token based Based",
+ *     in="header",
+ *     scheme="bearer",
+ *     bearerFormat="JWT",
+ *     securityScheme="apiAuth",
+ * )
     */
     
 

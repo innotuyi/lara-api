@@ -26,20 +26,16 @@
                             "schema": {
                                 "properties": {
                                     "": {
-                                        "description": "Create an Meeting",
                                         "type": "array",
                                         "items": {
                                             "properties": {
                                                 "name": {
-                                                    "description": "Create an Meeting",
                                                     "type": "string"
                                                 },
                                                 "email": {
-                                                    "description": "Create an Meeting",
                                                     "type": "email"
                                                 },
                                                 "password": {
-                                                    "description": "Create an Meeting",
                                                     "type": "string"
                                                 }
                                             },
@@ -50,7 +46,8 @@
                                 "type": "object",
                                 "example": {
                                     "name": "Innocent",
-                                    "email": "innocent@gmail.com"
+                                    "email": "innocent@gmail.com",
+                                    "password": "test123"
                                 }
                             }
                         }
@@ -64,19 +61,32 @@
                                 "schema": {
                                     "properties": {
                                         "name": {
-                                            "description": "Create an Meeting",
                                             "type": "number",
                                             "example": "innocent"
                                         },
                                         "email": {
-                                            "description": "Create an Meeting",
                                             "type": "string",
                                             "example": "innocent@gmail.om"
-                                        },
-                                        "password": {
-                                            "description": "Create an Meeting",
-                                            "type": "string",
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "User created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "name": {
+                                            "type": "number",
                                             "example": "innocent"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "example": "innocent@gmail.om"
                                         }
                                     },
                                     "type": "object"
@@ -91,7 +101,6 @@
                                 "schema": {
                                     "properties": {
                                         "msg": {
-                                            "description": "Create an Meeting",
                                             "type": "string",
                                             "example": "fail"
                                         }
@@ -108,7 +117,6 @@
                                 "schema": {
                                     "properties": {
                                         "message": {
-                                            "description": "Create an Meeting",
                                             "type": "string",
                                             "example": "UnAuthanticated"
                                         }
@@ -125,7 +133,6 @@
                                 "schema": {
                                     "properties": {
                                         "message": {
-                                            "description": "Create an Meeting",
                                             "type": "string",
                                             "example": "Server Error"
                                         }
@@ -142,7 +149,6 @@
                                 "schema": {
                                     "properties": {
                                         "msg": {
-                                            "description": "Create an Meeting",
                                             "type": "string",
                                             "example": "fail"
                                         }
@@ -177,13 +183,13 @@
                                         "type": "array",
                                         "items": {
                                             "properties": {
-                                                "name": {
-                                                    "description": "Sign in a User",
-                                                    "type": "string"
-                                                },
                                                 "email": {
                                                     "description": "Sign in a User",
                                                     "type": "email"
+                                                },
+                                                "password": {
+                                                    "description": "Sign in a User",
+                                                    "type": "password"
                                                 }
                                             },
                                             "type": "object"
@@ -192,8 +198,8 @@
                                 },
                                 "type": "object",
                                 "example": {
-                                    "name": "Innocent",
-                                    "email": "innocent@gmail.com"
+                                    "email": "innocent@gmail.com",
+                                    "password": "innocent123"
                                 }
                             }
                         }
@@ -206,20 +212,10 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "name": {
+                                        "token": {
                                             "description": "Sign in a User",
-                                            "type": "number",
-                                            "example": "innocent"
-                                        },
-                                        "email": {
-                                            "description": "Sign in a User",
-                                            "type": "string",
-                                            "example": "innocent@gmail.om"
-                                        },
-                                        "password": {
-                                            "description": "Sign in a User",
-                                            "type": "string",
-                                            "example": "innocent"
+                                            "type": "text",
+                                            "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvdXNlclwvc2lnbmluIiwiaWF0IjoxNjQ2MTY1OTUwLCJleHAiOjE2NDYxNjk1NTAsIm5iZiI6MTY0NjE2NTk1MCwianRpIjoiaU1uc3p5YlQxdGJBOXZDQSIsInN1YiI6MTMsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.ObJXwVHouaajvWmzVUJNRw4EEAXHn3ndznQF82IsxSQ"
                                         }
                                     },
                                     "type": "object"
@@ -370,18 +366,13 @@
                             }
                         }
                     }
-                },
-                "security": [
-                    {
-                        "bearer": []
-                    }
-                ]
+                }
             },
             "post": {
                 "tags": [
                     "meeting"
                 ],
-                "summary": "Creating new meeting",
+                "summary": "Create an Meeting",
                 "operationId": "App\\Http\\Controllers\\MeetingController::store",
                 "requestBody": {
                     "content": {
@@ -423,6 +414,33 @@
                 "responses": {
                     "200": {
                         "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "title": {
+                                            "description": "Create an Meeting",
+                                            "type": "number",
+                                            "example": "one meeting"
+                                        },
+                                        "description": {
+                                            "description": "Create an Meeting",
+                                            "type": "string",
+                                            "example": "another meeting"
+                                        },
+                                        "time": {
+                                            "description": "Create an Meeting",
+                                            "type": "string",
+                                            "example": "202201301330CET"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "Meeting created",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -519,7 +537,7 @@
                 },
                 "security": [
                     {
-                        "bearer": []
+                        "apiAuth": []
                     }
                 ]
             }
@@ -1069,6 +1087,18 @@
                         "bearer": []
                     }
                 ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "apiAuth": {
+                "type": "http",
+                "description": "Login with email and password to get the authentication token",
+                "name": "Token based Based",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
             }
         }
     }
