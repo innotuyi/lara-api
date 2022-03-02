@@ -23,7 +23,7 @@ class RegistrationController extends Controller
      * @OA\Post (
      *     path="/api/v1/meeting/registration",
      *     tags={"registration"},
-     *     security={{"bearer":{} }},
+     *     security={{"apiAuth":{} }},
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *             mediaType="application/json",
@@ -79,13 +79,22 @@ class RegistrationController extends Controller
  *    )  
  * ),
  *  @OA\Response(
-     *          response=419,
-     *          description="CSRF Token mismatch",
-     *          @OA\JsonContent(
-     *              @OA\Property(property="msg", type="string", example="fail"),
-     *          )
-     *      ),   
-     * )
+ *          response=419,
+ *          description="CSRF Token mismatch",
+  *          @OA\JsonContent(
+  *              @OA\Property(property="msg", type="string", example="fail"),
+ *          )
+ *      ),   
+ *     )
+ *     @OA\SecurityScheme(
+    *     type="http",
+ *     description="Login with email and password to get the authentication token",
+ *     name="Token based Based",
+ *     in="header",
+ *     scheme="bearer",
+ *     bearerFormat="JWT",
+ *     securityScheme="apiAuth",
+ * )
     */
     public function store(Request $request)
     {

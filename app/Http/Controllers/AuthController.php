@@ -155,7 +155,7 @@ class AuthController extends Controller
      * @OA\Post (
      *     path="/api/v1/user/signin",
      *     tags={"user"},
-     *     security={{"bearer":{} }},
+     *     security={{"apiAuth":{} }},
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *             mediaType="application/json",
