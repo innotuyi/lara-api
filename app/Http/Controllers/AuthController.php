@@ -47,17 +47,6 @@ class AuthController extends Controller
      *         )
      *      ),
      *      @OA\Response(
-     *          response=200,
-     *          description="success",
-     *          @OA\JsonContent(
-     *              @OA\Property(property="name", type="number", example="innocent"),
-     *              @OA\Property(property="email", type="string", example="innocent@gmail.om"),
-     * 
-   
-     * 
-     *          )
-     *      ),
-        *      @OA\Response(
      *          response=201,
      *          description="User created",
      *          @OA\JsonContent(
@@ -88,23 +77,7 @@ class AuthController extends Controller
  *    @OA\JsonContent(
  *       @OA\Property(property="message", type="string", example="Server Error"),
  *    )  
- * ),
- *  @OA\Response(
-     *          response=419,
-     *          description="CSRF Token mismatch",
-     *          @OA\JsonContent(
-     *              @OA\Property(property="msg", type="string", example="fail"),
-     *          )
-     *      ),
-     *     @OA\SecurityScheme(
-     *     type="http",
-     *     description="Login with email and password to get the authentication token",
-     *     name="Token based Based",
-     *     in="header",
-     *     scheme="bearer",
-     *     bearerFormat="JWT",
-     *     securityScheme="apiAuth",
-     * )   
+ * ),  
      * )
     */
 
@@ -209,23 +182,7 @@ class AuthController extends Controller
  *    @OA\JsonContent(
  *       @OA\Property(property="message", type="string", example="Server Error"),
  *    )  
- * ),
- *  @OA\Response(
- *          response=419,
- *          description="CSRF Token mismatch",
- *          @OA\JsonContent(
- *              @OA\Property(property="msg", type="string", example="fail"),
- *          )
- *      ),   
- * )
- * @OA\SecurityScheme(
- *     type="http",
- *     description="Login with email and password to get the authentication token",
- *     name="Token based Based",
- *     in="header",
- *     scheme="bearer",
- *     bearerFormat="JWT",
- *     securityScheme="apiAuth",
+ * ),  
  * )
     */
     

@@ -77,24 +77,8 @@ class RegistrationController extends Controller
  *    @OA\JsonContent(
  *       @OA\Property(property="message", type="string", example="Server Error"),
  *    )  
- * ),
- *  @OA\Response(
- *          response=419,
- *          description="CSRF Token mismatch",
-  *          @OA\JsonContent(
-  *              @OA\Property(property="msg", type="string", example="fail"),
- *          )
- *      ),   
+ * ),  
  *     )
- *     @OA\SecurityScheme(
-    *     type="http",
- *     description="Login with email and password to get the authentication token",
- *     name="Token based Based",
- *     in="header",
- *     scheme="bearer",
- *     bearerFormat="JWT",
- *     securityScheme="apiAuth",
- * )
     */
     public function store(Request $request)
     {
@@ -102,6 +86,9 @@ class RegistrationController extends Controller
             'meeting_id' => 'required',
             'user_id' => 'required',
         ]);
+        if (! $user = JWTAuth::parseToken()->authenticate()) {
+            return response()->json(['msg' => 'User not found'], 404);
+        }
 
         $meeting_id = $request->input('meeting_id');
         $user_id = $request->input('user_id');
@@ -142,7 +129,7 @@ class RegistrationController extends Controller
      * @OA\Delete (
      *     path="/api/v1/meeting/registration/{id}",
      *     tags={"registration"},
-     *     security={ {"bearer": {} }},
+     *     security={ {"apiAuth": {} }},
      *     @OA\Parameter(
      *         in="path",
      *         name="id",
@@ -153,7 +140,7 @@ class RegistrationController extends Controller
      *         response=200,
      *         description="success",
      *         @OA\JsonContent(
-     *             @OA\Property(property="msg", type="string", example="Employee deletion success")
+     *             @OA\Property(property="msg", type="string", example="Meeting deletedd successful")
      *         )
      *     ),
      *      @OA\Response(
@@ -170,13 +157,6 @@ class RegistrationController extends Controller
  *       @OA\Property(property="message", type="string", example="Server Error"),
  *    )  
  * ),  
- *  @OA\Response(
-     *          response=419,
-     *          description="CSRF Token mismatch",
-     *          @OA\JsonContent(
-     *              @OA\Property(property="msg", type="string", example="fail"),
-     *          )
-     *      ), 
      * )
      * @param  int  $id
      * @return \Illuminate\Http\Response

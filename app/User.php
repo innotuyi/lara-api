@@ -17,7 +17,7 @@ class User extends Authenticatable implements JWTSubject
         'password', 'remember_token',
     ];
 
-    public  function  meeting() {
+    public  function  meetings() {
       return  $this->belongsToMany('App\Meeting');
     }
     protected $casts = [

@@ -119,16 +119,6 @@ class MeetingController extends Controller
      *             )
      *         )
      *      ),
-     *      @OA\Response(
-     *          response=200,
-     *          description="success",
-     *          @OA\JsonContent(
-     *              @OA\Property(property="title", type="number", example="one meeting"),
-     *              @OA\Property(property="description", type="string", example="another meeting"),
-     *              @OA\Property(property="time", type="string", example="202201301330CET"),
-     * 
-     *          )
-     *      ),
      *           @OA\Response(
      *          response=201,
      *          description="Meeting created",
@@ -160,14 +150,7 @@ class MeetingController extends Controller
  *       @OA\Property(property="message", type="string", example="Server Error"),
  *    )  
  * ),
- *  @OA\Response(
-     *          response=419,
-     *          description="CSRF Token mismatch",
-     *          @OA\JsonContent(
-     *              @OA\Property(property="msg", type="string", example="fail"),
-     *          )
-     *      ),   
-     * )
+ * )
      * 
  *     @OA\SecurityScheme(
  *     type="http",
@@ -232,7 +215,7 @@ class MeetingController extends Controller
      * @OA\Get (
      *     path="/api/v1/meeting/{id}",
      *     tags={"meeting"},
-     *     security={ {"bearer": {} }},
+     *     security={ {"apiAuth": {} }},
      *     @OA\Parameter(
      *         in="path",
      *         name="id",
@@ -243,9 +226,9 @@ class MeetingController extends Controller
      *         response=200,
      *         description="success",
      *         @OA\JsonContent(
-     *              @OA\Property(property="title", type="number", example=1),
-     *              @OA\Property(property="description", type="string", example="title"),
-     *              @OA\Property(property="time", type="string", example="content@gmil.com"),
+     *              @OA\Property(property="title", type="number", example="Meeting one"),
+     *              @OA\Property(property="description", type="string", example="Meetig description"),
+     *              @OA\Property(property="time", type="string", example="202201301330CET"),
      *           
      *         )
      *     ),
@@ -289,7 +272,7 @@ class MeetingController extends Controller
      * @OA\Put (
      *     path="/api/v1/meeting/{id}",
      *     tags={"meeting"},
-     *     security={ {"bearer": {} }},
+     *     security={ {"apiAuth": {} }},
      *     @OA\Parameter(
      *         in="path",
      *         name="id",
@@ -316,9 +299,9 @@ class MeetingController extends Controller
      *                      ),                
      *                 ),
      *                 example={
-     *                     "title":"Meeting one",
-     *                     "description":"Meeting one description",
-     *                     "date":"202201301330CET",
+     *                     "time":"202201301330CET",
+     *                     "title":"meeting one",
+     *                     "description":"meeting description",
      *                }
      *             )
      *         )
@@ -327,9 +310,9 @@ class MeetingController extends Controller
      *          response=200,
      *          description="success",
      *          @OA\JsonContent(
-     *              @OA\Property(property="title", type="number", example=1),
-     *              @OA\Property(property="description", type="string", example="title"),
-     *              @OA\Property(property="time", type="string", example="content@gmil.com"),
+     *              @OA\Property(property="title", type="number", example="meeting one"),
+     *              @OA\Property(property="description", type="string", example="meeting description"),
+     *              @OA\Property(property="time", type="string", example="202201301330CET"),
      *          )
      *      ),
      *      @OA\Response(
@@ -346,13 +329,6 @@ class MeetingController extends Controller
  *       @OA\Property(property="message", type="string", example="Server Error"),
  *    )  
  * ),
- *  @OA\Response(
-     *          response=419,
-     *          description="CSRF Token mismatch",
-     *          @OA\JsonContent(
-     *              @OA\Property(property="msg", type="string", example="fail"),
-     *          )
-     *      ),
      * )
      */
 
@@ -406,7 +382,7 @@ class MeetingController extends Controller
      * @OA\Delete (
      *     path="/api/v1/meeting/{id}",
      *     tags={"meeting"},
-     *     security={ {"bearer": {} }},
+     *     security={ {"apiAuth": {} }},
      *     @OA\Parameter(
      *         in="path",
      *         name="id",
@@ -417,7 +393,7 @@ class MeetingController extends Controller
      *         response=200,
      *         description="success",
      *         @OA\JsonContent(
-     *             @OA\Property(property="msg", type="string", example="Employee deletion success")
+     *             @OA\Property(property="msg", type="string", example="Meeting deleted successful")
      *         )
      *     ),
      *      @OA\Response(
@@ -433,14 +409,7 @@ class MeetingController extends Controller
  *    @OA\JsonContent(
  *       @OA\Property(property="message", type="string", example="Server Error"),
  *    )  
- * ),  
- *  @OA\Response(
-     *          response=419,
-     *          description="CSRF Token mismatch",
-     *          @OA\JsonContent(
-     *              @OA\Property(property="msg", type="string", example="fail"),
-     *          )
-     *      ), 
+ * ),   
      * )
      * @param  int  $id
      * @return \Illuminate\Http\Response
